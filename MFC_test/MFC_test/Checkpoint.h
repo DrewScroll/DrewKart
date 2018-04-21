@@ -1,6 +1,8 @@
 #pragma once
+
 #include "GameObjects.h"
-class Checkpoint:public GameObjects
+
+class Checkpoint : public GameObjects
 {
 public:
 	Checkpoint();
@@ -13,7 +15,7 @@ public:
 	void SetWorld(World* ActiveWorls)*/
 
 	Checkpoint* m_nextCP;
-	Vector2D nextCPDirNorm;
+	Vector2D m_nextCPDirNorm;
 	Vector2D m_assistDir;
 };
 

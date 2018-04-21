@@ -11,26 +11,30 @@ Boid::~Boid()
 {
 }
 
-void Boid::Seek(Vector2D Target, Vector2D output, float fScale)
+Vector2D Boid::Seek(Vector2D Target, float fScale)
 {
 	Vector2D Direction = Target - m_Pos;
-	output = Direction.Normalize()*fScale;
-	m_Pos += output;
+	Direction.Normalize();
+	return Direction * fScale;
 }
 
-void Boid::Flee(Vector2D Target, Vector2D output, float fScale)
+Vector2D Boid::Flee(Vector2D Target, float fScale)
 {
+	return Vector2D();
 }
 
-void Boid::Arrive(Vector2D Target, Vector2D output, float fScale)
+Vector2D Boid::Arrive(Vector2D Target, float fScale)
 {
+	return Vector2D();
 }
 
-void Boid::Wander(Vector2D Target, Vector2D output, float fScale)
+Vector2D Boid::Wander(Vector2D Target, float fScale)
 {
+	return Vector2D();
 }
 
-void Boid::Follow_Path(Vector2D Target, Vector2D output, float fScale)
+Vector2D Boid::Follow_Path(Vector2D Target, float fScale)
 {
+	return Vector2D();
 }
 

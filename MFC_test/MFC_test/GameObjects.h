@@ -1,7 +1,5 @@
 #pragma once
-#include "World.h"
-#include "Boid.h"
-#include "Checkpoint.h"
+
 #include <vector>
 
 struct Vector2D
@@ -83,7 +81,7 @@ struct Vector2D
 	{
 		return sqrt((x*x) + (y*y));
 	}
-	Vector2D Normalize()
+	void Normalize()
 	{
 		float mag = Magnitud();
 		x *= mag;
@@ -101,13 +99,14 @@ struct Vector2D
 	}
 };
 
+class Checkpoint;
+
 class GameObjects
 {
 public:
 	GameObjects();
 	~GameObjects();
 
-	World* ActiveWorld;
 	Vector2D m_Pos;
 	virtual void Update() = 0;
 	virtual void SetNextCP(Checkpoint* NewNextCP) = 0;

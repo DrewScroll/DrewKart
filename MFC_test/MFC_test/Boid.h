@@ -1,16 +1,18 @@
 #pragma once
+
 #include "GameObjects.h"
+
 class Boid : public GameObjects
 {
 public:
 	Boid();
 	~Boid();
 
-	void Seek(Vector2D Target, Vector2D output, float fScale);
-	void Flee(Vector2D Target, Vector2D output, float fScale);
-	void Arrive(Vector2D Target, Vector2D output, float fScale);
-	void Wander(Vector2D Target, Vector2D output, float fScale);
-	void Follow_Path(Vector2D Target, Vector2D output, float fScale);
+	Vector2D Seek(Vector2D Targe, float fScale);
+	Vector2D Flee(Vector2D Target, float fScale);
+	Vector2D Arrive(Vector2D Target, float fScale);
+	Vector2D Wander(Vector2D Target, float fScale);
+	Vector2D Follow_Path(Vector2D Target, float fScale);
 
 	virtual void Update() = 0;
 };

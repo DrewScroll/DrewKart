@@ -2,11 +2,10 @@
 #include "Kart.h"
 
 
-Kart::Kart(Vector2D Position, float fMaxSpeed, World* p_World)
+Kart::Kart(Vector2D Position, float fMaxSpeed)
 {
 	m_Pos = Position;
-	MaxSpeed = fMaxSpeed;
-	ActiveWorld = p_World;
+	m_MaxSpeed = fMaxSpeed;
 }
 
 
@@ -16,29 +15,29 @@ Kart::~Kart()
 
 void Kart::Update()
 {
-	currentSpeed = Speed.Magnitud();
-	if (currentSpeed > MaxSpeed)
+	m_currentSpeed = m_Speed.Magnitud();
+	if (m_currentSpeed > m_MaxSpeed)
 	{
-		Speed.Normalize();
-		Speed*MaxSpeed;
+		m_Speed.Normalize();
+		m_Speed*m_MaxSpeed;
 	}
 	else
 	{
-		Speed.Normalize();
-		Speed*currentSpeed;
+		m_Speed.Normalize();
+		m_Speed*m_currentSpeed;
 	}
-	Seek(CurrentCP->m_Pos, Speed, 0.5f);
-	m_Pos += Speed;
-	for (int i = 0; i < ActiveWorld->KartArr.size(); i++)
+	Seek(m_CurrentCP->m_Pos, 0.5f);
+	m_Pos += m_Speed;
+	/*for (int i = 0; i < ActiveWorld->KartArr.size(); i++)
 	{
 		if ((ActiveWorld->KartArr[i].m_Pos - m_Pos).Magnitud() <= m_KartSize)
 		{
-			Speed += (ActiveWorld->KartArr[i].m_Pos - m_Pos)*(MaxSpeed*0.5);
+			m_Speed += (ActiveWorld->KartArr[i].m_Pos - m_Pos)*(m_MaxSpeed*0.5);
 		}
-	}
+	}*/
 }
 
 void Kart::SetNextCP(Checkpoint * NewNextCP)
 {
-	CurrentCP = NewNextCP;
+	m_CurrentCP = NewNextCP;
 }
