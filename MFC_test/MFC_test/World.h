@@ -13,6 +13,7 @@ public:
 	std::list<GameObjects*> m_GameObj;
 	//std::vector <Checkpoint> CheckpointArr;
 	//std::vector <Kart> KartArr;
+	Checkpoint* FindCheckPoint(int index);
 
 	int m_iTotalCheckpoint;
 	int m_iTotalKarts;

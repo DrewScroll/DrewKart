@@ -50,4 +50,5 @@
 #endif
 #endif
 
-
+#include "World.h"
+extern World g_MainWorld;

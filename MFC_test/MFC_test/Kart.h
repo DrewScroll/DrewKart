@@ -6,18 +6,21 @@
 class Kart : public Boid
 {
 public:
-	Kart(Vector2D Position, float fMaxSpeed);
+	Kart(const Vector2D& Position, float fMass, float fMaxSpeed);
 	~Kart();
 
 	Vector2D m_Direction;
 	Vector2D m_Speed;
-	float m_KartSize = 2;
-	float m_currentSpeed = 0;
+	Vector2D m_Steering;
+	float m_Mass;
+	float m_MaxCarSize;
+	float m_currentSpeed;
 	float m_MaxSpeed;
-	Checkpoint* m_StartingCP;
+	float m_fCPcount;
 	Checkpoint* m_CurrentCP;
 
 	void Update();
 	void SetNextCP(Checkpoint* NewNextCP);
+	//bool isCollided(const Vector2D& Position);
 };
 
