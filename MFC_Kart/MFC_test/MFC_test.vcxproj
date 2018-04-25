@@ -190,6 +190,7 @@
     <ClInclude Include="DlgName.h" />
     <ClInclude Include="GameObjects.h" />
     <ClInclude Include="Kart.h" />
+    <ClInclude Include="KartDlg.h" />
     <ClInclude Include="MFC_test.h" />
     <ClInclude Include="MFC_testDlg.h" />
     <ClInclude Include="Resource.h" />
@@ -204,6 +205,7 @@
     <ClCompile Include="DlgName.cpp" />
     <ClCompile Include="GameObjects.cpp" />
     <ClCompile Include="Kart.cpp" />
+    <ClCompile Include="KartDlg.cpp" />
     <ClCompile Include="MFC_test.cpp" />
     <ClCompile Include="MFC_testDlg.cpp" />
     <ClCompile Include="stdafx.cpp">

@@ -5,8 +5,10 @@
 #include "stdafx.h"
 #include "MFC_test.h"
 #include "MFC_testDlg.h"
+
 #include "afxdialogex.h"
 #include "DlgName.h"
+#include "KartDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -14,7 +16,7 @@
 
 
 // CMFC_testDlg dialog
-
+//CD  dc(wnd)
 
 
 CMFC_testDlg::CMFC_testDlg(CWnd* pParent /*=NULL*/)
@@ -37,13 +39,13 @@ BEGIN_MESSAGE_MAP(CMFC_testDlg, CDialogEx)
 	ON_BN_CLICKED(IDOK, &CMFC_testDlg::OnBnClickedOk)
 	ON_WM_MOUSEMOVE()
 	ON_COMMAND(ID_ARCHIVO_SALIR, &CMFC_testDlg::OnArchivoSalir)
+	ON_BN_CLICKED(button_Go_Karting, &CMFC_testDlg::OnBnClickedGoKarting)
 END_MESSAGE_MAP()
 
 
 // CMFC_testDlg message handlers
 
-BOOL CMFC_testDlg::OnInitDialog()
-{
+BOOL CMFC_testDlg::OnInitDialog() {
 	CDialogEx::OnInitDialog();
 
 	// Set the icon for this dialog.  The framework does this automatically
@@ -65,10 +67,8 @@ BOOL CMFC_testDlg::OnInitDialog()
 //  to draw the icon.  For MFC applications using the document/view model,
 //  this is automatically done for you by the framework.
 
-void CMFC_testDlg::OnPaint()
-{
-	if (IsIconic())
-	{
+void CMFC_testDlg::OnPaint() {
+	if (IsIconic()) {
 		CPaintDC dc(this); // device context for painting
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
@@ -84,8 +84,7 @@ void CMFC_testDlg::OnPaint()
 		// Draw the icon
 		dc.DrawIcon(x, y, m_hIcon);
 	}
-	else
-	{
+	else {
 		CDialogEx::OnPaint();
 
 		CDC* pDE = m_ScreenControl.GetDC();
@@ -111,15 +110,13 @@ void CMFC_testDlg::OnPaint()
 
 // The system calls this function to obtain the cursor to display while the user drags
 //  the minimized window.
-HCURSOR CMFC_testDlg::OnQueryDragIcon()
-{
+HCURSOR CMFC_testDlg::OnQueryDragIcon() {
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
 
 
-void CMFC_testDlg::OnBnClickedOk()
-{
+void CMFC_testDlg::OnBnClickedOk() {
 	// TODO: Add your control notification handler code here
 	//CDialogEx::OnOK();
 	//Beep(750, 300);
@@ -139,8 +136,7 @@ void CMFC_testDlg::OnBnClickedOk()
 }
 
 
-void CMFC_testDlg::OnMouseMove(UINT nFlags, CPoint point)
-{
+void CMFC_testDlg::OnMouseMove(UINT nFlags, CPoint point) {
 	// TODO: Add your message handler code here and/or call default
 	m_MousePosX = point.x;
 	m_MousePosY = point.y;
@@ -159,13 +155,18 @@ void CMFC_testDlg::OnMouseMove(UINT nFlags, CPoint point)
 }
 
 
-void CMFC_testDlg::OnArchivoSalir()
-{
+void CMFC_testDlg::OnArchivoSalir() {
 	// TODO: Add your command handler code here
 	int msg = MessageBox(TEXT("Seguro?"), TEXT("Salir?"), MB_OKCANCEL);
-	if(msg == 1)
-	{
+	if(msg == 1) {
 		OnCancel();
 	}
 }
 //////////
+
+
+void CMFC_testDlg::OnBnClickedGoKarting() {
+	// TODO: Add your control notification handler code here
+	CKartDlg KartingTime;
+	KartingTime.DoModal();
+}

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Kart.h"
-
+#include "World.h"
 
 Kart::Kart(const Vector2D& Position, float fMass, float fMaxSpeed)
 {
@@ -9,8 +9,8 @@ Kart::Kart(const Vector2D& Position, float fMass, float fMaxSpeed)
 	m_MaxSpeed = fMaxSpeed;
 	m_currentSpeed = 0;
 	m_fCPcount = 0;
-	m_CurrentCP = g_MainWorld.FindCheckPoint(m_fCPcount);
-	m_MaxCarSize = 2;
+	m_CurrentCP = World::getInstance()->FindCheckPoint(m_fCPcount);
+	m_MaxCarSize = 12;
 }
 
 Kart::~Kart()
@@ -31,18 +31,23 @@ void Kart::Update()
 		m_Speed.Normalize();
 		m_Speed*m_currentSpeed;
 	}
-	m_Steering += Seek(m_CurrentCP->m_Pos, 0.5f);
+	m_Steering += ((Seek(m_CurrentCP->m_Pos, 0.5f)).Normalize());
 	m_Pos += (m_Direction + (m_Steering*m_Mass));
-	m_Speed = (m_Direction + m_Steering).Normalize()*m_MaxSpeed;
+	m_Speed = ((m_Direction + m_Steering)*m_MaxSpeed).Normalize();
+	m_Direction = m_Steering.Normalize();
 
-	SetNextCP(g_MainWorld.FindCheckPoint(m_fCPcount));
+	SetNextCP(World::getInstance()->FindCheckPoint(m_fCPcount));
 
 	if ((m_CurrentCP->m_Pos - m_Pos).Magnitud() < 5)
 	{
 		++m_fCPcount;
+		if (m_fCPcount >= World::getInstance()->m_iTotalCheckpoint)
+		{
+			m_fCPcount = 0;
+		}
 	}
 	
-	m_Direction = Obs_Avoid(m_MaxCarSize, 300);
+	m_Direction += (Obs_Avoid(m_MaxCarSize, 300)).Normalize();
 
 	/*for (int i = 0; i < ActiveWorld->KartArr.size(); i++)
 	{

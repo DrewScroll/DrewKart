@@ -31,7 +31,6 @@ void CDlgName::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CDlgName, CDialogEx)
 	ON_BN_CLICKED(IDOK, &CDlgName::OnBnClickedOk)
-	ON_EN_CHANGE(IDC_EDIT_NAME, &CDlgName::OnEnChangeEditName)
 END_MESSAGE_MAP()
 
 
@@ -43,15 +42,4 @@ void CDlgName::OnBnClickedOk()
 	// TODO: Add your control notification handler code here
 	UpdateData();
 	CDialogEx::OnOK();
-}
-
-
-void CDlgName::OnEnChangeEditName()
-{
-	// TODO:  Si éste es un control RICHEDIT, el control no
-	// enviará esta notificación a menos que se invalide CDialogEx::OnInitDialog()
-	// función y llamada CRichEditCtrl().SetEventMask()
-	// con la marca ENM_CHANGE ORed en la máscara.
-
-	// TODO:  Agregue aquí el controlador de notificación de controles
 }

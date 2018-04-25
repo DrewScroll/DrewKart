@@ -40,4 +40,6 @@ public:
 	int m_MousePosX;
 	int m_MousePosY;
 	afx_msg void OnArchivoSalir();
+	afx_msg void OnBnClickedButton1();
+	afx_msg void OnBnClickedGoKarting();
 };

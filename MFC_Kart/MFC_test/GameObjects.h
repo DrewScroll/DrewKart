@@ -13,7 +13,7 @@ public:
 
 	Vector2D m_Pos;
 	virtual void Update() = 0;
-	virtual void SetNextCP(Checkpoint* NewNextCP) {}
+	virtual void SetNextCP(Checkpoint* NewNextCP) = 0;
 
 };
 

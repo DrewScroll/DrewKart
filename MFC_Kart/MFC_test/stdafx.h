@@ -50,5 +50,6 @@
 #endif
 #endif
 
-#include "World.h"
-extern World g_MainWorld;
+#include <afxcontrolbars.h>
+/*#include "World.h"
+extern World g_MainWorld;*/

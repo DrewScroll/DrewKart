@@ -5,4 +5,4 @@
 
 #include "stdafx.h"
 
-World g_MainWorld;
+

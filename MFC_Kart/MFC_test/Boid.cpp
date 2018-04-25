@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Boid.h"
-
+#include "World.h"
 
 Boid::Boid()
 {
@@ -41,7 +41,7 @@ Vector2D Boid::Follow_Path(const Vector2D& Target, float fScale)
 Vector2D Boid::Obs_Avoid(float radius, float fScale)
 {
 	Vector2D Direction;
-	for (auto gameObj : g_MainWorld.m_GameObj)
+	for (auto gameObj : World::getInstance()->m_GameObj)
 	{
 		Kart* pK = nullptr;
 		pK = dynamic_cast<Kart*>(gameObj);

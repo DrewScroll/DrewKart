@@ -6,8 +6,12 @@
 
 class World
 {
-public:
+private:
 	World();
+
+	static World* m_Instance;
+
+public:
 	~World();
 
 	std::list<GameObjects*> m_GameObj;
@@ -18,5 +22,16 @@ public:
 	int m_iTotalCheckpoint;
 	int m_iTotalKarts;
 	void Update();
+	void Init();
+
+	static World* getInstance()
+	{
+		if (m_Instance == nullptr)
+		{
+			m_Instance = new World();
+		}
+
+		return m_Instance;
+	}
 };
 

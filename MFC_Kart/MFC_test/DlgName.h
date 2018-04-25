@@ -1,6 +1,5 @@
 #pragma once
 
-#include "World.h"
 
 // CDlgName dialog
 
@@ -24,5 +23,4 @@ protected:
 public:
 	CString m_Name;
 	afx_msg void OnBnClickedOk();
-	afx_msg void OnEnChangeEditName();
 };
