@@ -7,10 +7,11 @@ Kart::Kart(const Vector2D& Position, float fMass, float fMaxSpeed)
 	m_Pos = Position;
 	m_Mass = 1/fMass;
 	m_MaxSpeed = fMaxSpeed;
-	m_currentSpeed = 0;
+	//m_currentSpeed = 0;
 	m_fCPcount = 0;
 	m_CurrentCP = World::getInstance()->FindCheckPoint(m_fCPcount);
 	m_MaxCarSize = 12;
+	m_Direction = { 1,0 };
 }
 
 Kart::~Kart()
@@ -20,21 +21,27 @@ Kart::~Kart()
 void Kart::Update()
 {
 	Vector2D m_Steering;
-	m_currentSpeed = m_Speed.Magnitud();
-	if (m_currentSpeed > m_MaxSpeed)
-	{
-		m_Speed.Normalize();
-		m_Speed*m_MaxSpeed;
-	}
-	else
-	{
-		m_Speed.Normalize();
-		m_Speed*m_currentSpeed;
-	}
-	m_Steering += ((Seek(m_CurrentCP->m_Pos, 0.5f)).Normalize());
-	m_Pos += (m_Direction + (m_Steering*m_Mass));
-	m_Speed = ((m_Direction + m_Steering)*m_MaxSpeed).Normalize();
-	m_Direction = m_Steering.Normalize();
+	//m_currentSpeed = m_Speed.Magnitud();
+	//if (m_currentSpeed > m_MaxSpeed)
+	//{
+	//	m_Speed.Normalize();
+	//	m_Speed*m_MaxSpeed;
+	//}
+	//else
+	//{
+	//	m_Speed.Normalize();
+	//	m_Speed*m_currentSpeed;
+	//}
+	m_Steering += Seek(m_CurrentCP->m_Pos, 100.f);
+	m_Steering += Obs_Avoid(m_MaxCarSize, 300);
+
+	Vector2D tmp = m_Steering;
+	m_Direction = ((tmp + m_Direction)).Normalize();
+
+	m_Pos += m_Direction * m_MaxSpeed;
+
+	/*m_Speed = (m_Direction + m_Steering)*m_MaxSpeed;
+	m_Direction = m_Steering.Normalize();*/
 
 	SetNextCP(World::getInstance()->FindCheckPoint(m_fCPcount));
 
@@ -47,7 +54,7 @@ void Kart::Update()
 		}
 	}
 	
-	m_Direction += (Obs_Avoid(m_MaxCarSize, 300)).Normalize();
+	
 
 	/*for (int i = 0; i < ActiveWorld->KartArr.size(); i++)
 	{

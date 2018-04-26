@@ -10,11 +10,11 @@ public:
 	~Kart();
 
 	Vector2D m_Direction;
-	Vector2D m_Speed;
+	//Vector2D m_Speed;
 	Vector2D m_Steering;
 	float m_Mass;
 	float m_MaxCarSize;
-	float m_currentSpeed;
+	//float m_currentSpeed;
 	float m_MaxSpeed;
 	float m_fCPcount;
 	Checkpoint* m_CurrentCP;

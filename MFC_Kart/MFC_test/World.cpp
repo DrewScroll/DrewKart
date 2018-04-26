@@ -10,7 +10,7 @@ World::World()
 void World::Init()
 {
 	m_iTotalCheckpoint = 5;
-	m_iTotalKarts = 200;
+	m_iTotalKarts = 2;
 
 	Vector2D Initial;
 
@@ -87,7 +87,7 @@ void World::Init()
 
 	for (int i = 0; i < m_iTotalKarts; i++)
 	{
-		Kart* M = new Kart(m_GameObj.front()->m_Pos, 5, 5);
+		Kart* M = new Kart(m_GameObj.front()->m_Pos, 15, 5);
 		M->m_Pos.x += i * 5;
 		m_GameObj.push_back(M);
 	}

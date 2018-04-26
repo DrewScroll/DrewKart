@@ -11,27 +11,7 @@
 // CKartDlg dialog
 
 IMPLEMENT_DYNAMIC(CKartDlg, CDialog)
-/*
-//bool find_uint_InVector(vector<unsigned int> vec, int val) {
-//	int s = vec.size();
-//	for (int i = 0; i < s; ++i) {
-//		if (vec[i] = val)
-//			return true;
-//	}
-//	return false;
-//}
-//Vec2 vecMidPoint(Vec2 &head, Vec2 &tail) {
-//	return (head - tail) * 0.5;
-//}
-//Vec2 Normalized(Vec2 &vec) {
-//	return vec *(1 / vec.Mag());
-//}
-//float Dot(Vec2 & vecA, Vec2 & vecB) {
-//	Vec2 vecN_A = Normalized(vecA);
-//	Vec2 vecN_B = Normalized(vecB);
-//	return(vecN_A.x*vecN_B.x + vecN_A.y*vecN_B.y + vecN_A.z*vecN_B.z);
-//}
-*/
+
 CKartDlg::CKartDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(IDD_DLG_KART, pParent)
 {
@@ -111,13 +91,23 @@ void CKartDlg::UpdatePaintData() {
 		IMG_DC->LineTo(gameObj->m_Pos.x, gameObj->m_Pos.y);
 	}
 	IMG_DC->LineTo(World::getInstance()->m_GameObj.front()->m_Pos.x, World::getInstance()->m_GameObj.front()->m_Pos.y);
+	
+
+	CBrush myBrush[2] = { (RGB(255, 0, 0)), (RGB(0, 0, 255)) };
+	HGDIOBJ pLastObj;
+
+	int count = 0;
 	for (auto gameObj : World::getInstance()->m_GameObj)
 	{
 		Kart* pK = nullptr;
 		pK = dynamic_cast<Kart*>(gameObj);
 		if (pK == nullptr)
 			continue;
+		
+		pLastObj = IMG_DC->SelectObject(myBrush[count % 2]);
 		IMG_DC->Ellipse(gameObj->m_Pos.x - 5, gameObj->m_Pos.y - 5, gameObj->m_Pos.x + 5, gameObj->m_Pos.y + 5);
+		IMG_DC->SelectObject(pLastObj);
+		++count;
 	}
 }
 
